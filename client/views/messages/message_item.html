@@ -1,0 +1,14 @@
+<template name="messageItem">
+	<li class="{{#if mine}}my-message{{/if}} {{#if isActivityMessage}}activity-message{{/if}}" data-user-id="{{#unless isActivityMessage}} {{user._id}} {{/unless}}">
+		{{#if isActivityMessage}}
+			{{{activityText}}}
+		{{else}}
+			<div class="text">{{text}}</div>
+			<div class="info">
+				<img src="{{user.avatar}}" class="avatar">
+				<strong>{{user.name}}</strong>
+				<em class="time">{{timeFormat createdAt}}</em>
+			</div>
+		{{/if}}
+	</li>
+</template>

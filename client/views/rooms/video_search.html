@@ -1,0 +1,70 @@
+<template name="videoSearch">
+	<div class="modal fade" id="videoSearch" tabindex="-1" role="dialog" aria-labelledby="videoSearchLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<a class="close-this" data-dismiss="modal">&times;</a>
+					<h4 class="modal-title" id="videoSearchLabel">Add a song or video...</h4>
+				</div>
+				<div class="modal-body">
+					<form id="form-search-video">
+						<span class="glyphicon glyphicon-search"></span>
+						<div class="search-provider">
+							<div class="provider">
+								<input type="radio" checked name="searchProvider" value="spotify" id="search-provider-spotify">
+								<label for="search-provider-spotify"><img src="http://www.spotify.com/favicon.ico"></label>
+							</div>
+							<div class="provider">
+								<input type="radio" name="searchProvider" value="youtube" id="search-provider-youtube">
+								<label for="search-provider-youtube"><img src="http://www.youtube.com/favicon.ico"></label>
+							</div>
+						</div>
+						<input name="query" type="text" placeholder="Search for a song, artist or both...">
+					</form>
+					{{#if isSearching}}
+						<div class="search-results">
+							<div class="loader"><img src="/loader-dark.gif"></div>
+						</div>
+					{{/if}}
+
+					{{#if spotifySearchResults}}
+						<div class="search-results">
+							<ul class="search-results-spotify">
+								{{#each spotifySearchResults}}
+									<li id="spotify-{{id}}">
+										{{#if image_url}}
+											<img  class="album-art" src="{{thumb_url}}">
+										{{/if}}
+										<div class="info">
+											<div class="artist">{{artist_name}}</div>
+											<div class="title">{{name}}</div>
+										</div>
+									</li>
+								{{/each}}
+							</ul>
+						</div>
+					{{/if}}
+
+					{{#if youtubeSearchResults}}
+						<div class="search-results">
+							<ul class="search-results-youtube">
+								{{#each youtubeSearchResults}}
+									<li>
+										<div class="youtube-art" style="background-image:url({{image_url}});"></div>
+										<div class="info">
+											<div class="title">{{title}}</div>
+											<div class="uploader">
+												<span>Uploaded by</span>
+												<strong>{{author_name}}</strong>
+											</div>
+										</div>
+									</li>
+								{{/each}}
+							</ul>
+						</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

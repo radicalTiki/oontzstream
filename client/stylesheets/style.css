@@ -1,0 +1,962 @@
+/*body {
+	padding-top: 50px;
+	padding-bottom: 30px;
+	font-family: 'Lato';
+	background-size: cover;
+	background-color: #131516;
+	color: white;
+}
+
+#backdrop {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: -1;
+	background-color: #01090C;
+	opacity: .5;
+}
+
+* {
+	outline: none;
+}
+
+.recommended {
+	border: 1px solid rgba(148, 246, 255, 1);
+	color: rgba(148, 246, 255, 1);
+	text-transform: uppercase;
+	font-size: 9px;
+	border-radius: 23px;
+	display: inline-block;
+	font-weight: bold;
+	position: relative;
+	padding: 0 8px;
+}
+
+#player, .player-container .col-sm-5 {
+	-webkit-transition: height .3s ease;
+}
+
+.btn-sky {
+	display: inline-block;
+	background-color: #27ae60;
+	border: none;
+	text-transform: uppercase;
+	font-family: 'montserrat';
+	font-size: 13px;
+	padding: 8px 16px 10px;
+	letter-spacing: 0.1px;
+	-webkit-font-smoothing: antialiased;
+	color: white;
+	font-weight: bold;
+	text-shadow: 0px 1px rgba(0,0,0,0.1);
+	box-shadow: inset 0px -2px rgba(0,0,0,0.2);
+}
+
+.btn-sky:hover {
+	box-shadow: inset 0px 50px rgba(255,255,255,.1), inset 0px -2px rgba(0,0,0,0.2);
+}
+
+.btn-sky:active {
+	padding: 10px 16px 8px;
+	box-shadow: inset 0px 50px rgba(0,0,0,.2), inset 0px 2px rgba(0,0,0,0.3);
+}
+
+.btn-sky .glyphicon {
+	font-size: 12px;
+	margin-right: 8px;
+}
+
+.player-container {
+	width: 100%;
+	background-color: #191C1F;
+	box-shadow: inset 0px 180px 190px rgba(0,0,0,0.3);
+}
+
+.player-container > .container > .row > .col-sm-7 {
+	padding-right: 0;
+}
+
+.player-container > .container > .row > .col-sm-5 {
+	padding-left: 0;
+}
+
+#player {
+	width: 100%;
+	display: block;
+}
+
+.player-idle:before {
+	content: "";
+	width: calc(100% - 14px);
+	height: 100%;
+	display: block;
+	left: 15px;
+	background-color: #131516;
+	position: absolute;
+	background-image: url(/player_idle.png);
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+
+.waiting-for-videos {
+	font-size: 30px;
+	text-align: center;
+	line-height: 35px;
+	position: absolute;
+	width: 100%;
+	top: 50%;
+	color: #7D8B97;
+	margin-top: -60px;
+	font-weight: 300;
+}
+
+@-webkit-keyframes handwave {
+	0%   { top: 15px; }
+	33%  { top: 30px; }
+	66%  { top: 30px; }
+	100% { top: 15px; }
+}
+
+.waiting-for-videos-action {
+	position: absolute;
+	right: 0px;
+	font-size: 34px;
+	top: 20px;
+	color: #A8B1B8;
+	-webkit-animation: handwave 2s ease infinite;
+}
+
+.chatroom-column {
+	padding-right: 0;
+}
+
+.videos-control {
+	color: whitesmoke;
+	-webkit-font-smoothing: antialiased;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+}
+
+.videos-control.is-np {
+	padding-top: 110px;
+}
+
+.room-info {
+	background-color: #2c3e50;
+	color: whitesmoke;
+	-webkit-font-smoothing: antialiased;
+	box-shadow: inset 0px -30px 55px rgba(0,0,0,0.3);
+}
+
+.room-info h1 {
+	margin: 0;
+	line-height: 55px;
+	font-size: 16px;
+	font-family: 'montserrat';
+	font-weight: bold;
+	text-transform: uppercase;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.room-info h1 > span {
+	color: rgb(94, 113, 127);
+	letter-spacing: 0;
+	margin-left: 8px;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.room-info .user-list {
+	margin: 0;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 30px;
+}
+
+.navbar-brand:hover {
+	opacity: .75;
+}
+
+.navbar-brand:active {
+	opacity: 1;
+}
+
+.navbar-brand img {
+	height: 25px;
+	position: relative;
+	top: -2px;
+}
+
+.landing {
+	text-align: center;
+	background: transparent;
+}
+
+.landing .logo {
+	display: block;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	height: 100px;
+}
+
+.page-header {
+	margin-top: 0;
+}
+
+.page-header.rooms-list-header {
+	height: 62px;
+	padding-top: 15px;
+}
+
+#login-buttons {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#login-buttons-twitter {
+	background-color: #00B0ED;
+	height: 36px;
+	border-radius: 3px;
+	margin: 7px 0;
+	border: 1px solid rgba(0,0,0,.1);
+	box-shadow: inset 0px 17px 30px rgba(255,255,255,0.2), 0px 1px white;
+	line-height: 35px;
+	padding: 0 12px;
+	font-size: 13px;
+	font-weight: bold;
+	color: white;
+	text-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+	cursor: pointer;
+	font-weight: 500;
+	letter-spacing: 0.1px;
+}
+
+.login-display-name { display: none; }
+
+#login-buttons-twitter:hover {
+	box-shadow: inset 0px 17px 40px rgba(255,255,255,0.35), 0px 1px white;
+}
+
+#login-buttons-logout {
+	font-size: 0;
+	display: inline-block;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 6px;
+	cursor: pointer;
+}
+
+#login-buttons-logout:before {
+	content: "\e017";
+	font-family: 'Glyphicons Halflings';
+	color: #888;
+	font-size: 14px;
+	-webkit-font-smoothing: antialiased;
+}
+
+#login-buttons-logout:hover {
+	color: #666;
+}
+
+.user-info {
+	display: inline-block;
+	padding-right: 7px;
+}
+
+.user-info .avatar {
+	width: 28px;
+	position: relative;
+	top: -1px;
+	border-radius: 50%;
+	margin-right: 4px;
+}
+
+.user-info span {
+	font-weight: bold;
+	font-size: 13px;
+}
+
+.video-list, .user-list, .messages, .proposed-videos-list, .rooms-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	margin-bottom: 10px;
+}
+
+.video-list li {
+	padding: 8px 0;
+	border-bottom: 1px solid #ddd;
+}
+
+.video-list li .time {
+	opacity: .66;
+	font-style: italic;
+	display: inline-block;
+	width: 75px;
+}
+
+
+.video-list li:last-child {
+	border-bottom: 0;
+}
+
+.user-list li {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.user-list li img {
+	width: 32px;
+	border-radius: 50%;
+	cursor: pointer;
+	border: 2px solid rgb(180, 180, 180);
+}
+
+.user-list li img:hover {
+	border-color: white;
+}
+
+.chatroom-container {
+	position: relative;
+}
+
+.messages {
+	height: 400px;
+	padding: 12px;
+	overflow: auto;
+	padding-bottom: 50px;
+	border-radius: 0 0 3px 3px;
+}
+
+.messages li {
+	margin-bottom: 10px;
+}
+
+.messages li .avatar {
+	width: 25px;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 3px;
+	margin-right: 6px;
+}
+
+.messages li .content {
+	display: inline-block;
+	vertical-align: top;
+	max-width: 50%;
+	color: #666;
+}
+
+.messages li .content .text {
+	display: inline-block;
+	background-color: white;
+	padding: 7px 9px;
+	box-shadow: 0px 1px 2px rgba(0,0,0,0.2);
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.messages li .content .info {
+	margin-top: 3px;
+	opacity: .75;
+	font-size: 12px;
+}
+
+.messages li .content .info .time {
+	margin-left: 5px;
+}
+
+.messages li.my-message {
+	text-align: right;
+}
+
+.messages li.my-message .avatar {
+	float: right;
+	margin-right: 0;
+	margin-left: 7px;
+}
+
+.messages li.my-message .content .text {
+	text-align: left;
+}
+
+.now-playing {
+	padding: 20px;
+	padding-right: 0;
+	border-bottom: 1px solid rgba(255,255,255,.05);
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+	box-shadow: -5px 10px 20px rgba(0,0,0,0.5);
+}
+
+.now-playing h4 {
+	font-size: 11px;
+	font-weight: bold;
+	opacity: .5;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	margin: 0;
+	margin-bottom: 10px;
+}
+
+.now-playing .album-art {
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	vertical-align: middle;
+	border: 2px solid rgb(82, 97, 107);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.now-playing .info {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 15px;
+	font-family: 'montserrat';
+	letter-spacing: -1px;
+	width: calc(100% - 145px);
+}
+
+.now-playing .info .title {
+	font-size: 20px;
+	line-height: 23px;
+	font-family: 'Montserrat';
+}
+
+.now-playing .info .sub {
+	margin-top: 0px;
+	opacity: .65;
+}
+
+.now-playing .info .title .source {
+	display: inline-block;
+	position: relative;
+	top: -2px;
+	margin-right: 3px;
+	width: 16px;
+	height: 16px;
+}
+
+.now-playing .info .artist {
+	font-size: 12px;
+	opacity: .65;
+	text-transform: uppercase;
+	letter-spacing: 0;
+	margin-bottom: 4px;
+}
+
+.now-playing .info .title .glyphicon { display: none; }
+
+
+.now-playing.source-youtube .info .title .glyphicon {
+	display: inline-block;
+	font-size: 12px;
+	opacity: .5;
+	margin-left: 6px;
+	position: relative;
+	top: 0px;
+}
+
+.now-playing .info .artist .glyphicon {
+	margin-right: 6px;
+}
+
+.now-playing .time-remaining {
+	line-height: 70px;
+	font-size: 23px;
+	font-weight: 200;
+	font-family: 'Helvetica Neue', Arial, sans-serif;
+	opacity: 0.5;
+}
+
+#search-video {
+	margin: 10px 0;
+}
+
+#sendMessage { 
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 12px;
+}
+
+#sendMessage .form-group {
+	margin-bottom: 0;
+	position: relative;
+}
+
+#sendMessage input[type="text"] {
+	padding-right: 86px;
+}
+
+#sendMessage input[type="submit"] {
+	position: absolute;
+	right: 0;
+	top: 0px;
+	margin: 0;
+	height: 34px;
+	line-height: 34px;
+	padding: 0 15px;
+	border-radius: 0 3px 3px 0;
+	font-weight: bold;
+	font-size: 14px;
+	text-shadow: 0px 1px rgba(0,0,0,0.2);
+	-webkit-font-smoothing: antialiased;
+}
+
+.search-providers {
+	margin: 0;
+	padding: 0;
+	margin-bottom: 10px;
+	list-style: none;
+	font-size: 0;
+}
+
+.search-providers li {
+	display: inline-block;
+	width: 50%;
+	font-size: 14px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.search-providers li:first-child {
+	border-right: 1px solid #ddd;
+}
+
+.search-providers li:not(.active) {
+	border-bottom: 1px solid #ddd;
+	background-color: whitesmoke;
+	opacity: .5;
+}
+
+.search-providers li:not(.active):hover {
+	opacity: 1;
+}
+
+.search-providers li a {
+	width: 100%;
+	display: inline-block;
+	text-decoration: none !important;
+	font-size: 15px;
+	color: #555;
+	padding: 12px;
+}
+
+.search-providers li.active a {
+	font-weight: bold;
+}
+
+.search-providers li a img {
+	height: 16px;
+	vertical-align: middle;
+	margin-right: 3px;
+	position: relative;
+	top: -1px;
+}
+
+#videoSearch .modal-body {
+	padding: 0;
+}
+
+#videoSearch .tab-content {
+	padding: 15px;
+}
+
+#videoSearch .search-container {
+	position: relative;
+}
+
+#videoSearch .search-container input {
+	border-radius: 40px;
+	padding-left: 35px;
+}
+
+#videoSearch .search-container .glyphicon-search {
+	position: absolute;
+	height: 34px;
+	line-height: 32px;
+	color: #888;
+	left: 15px;
+	font-size: 13px;
+}
+
+#videoSearch .search-results {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+#videoSearch .search-results .loader {
+	margin-top: 15px;
+}
+
+#videoSearch .search-results .loader img {
+	display: block;
+	margin: 0 auto;
+}
+
+#videoSearch .search-results li {
+	cursor: pointer;
+	border-bottom: 1px solid #eee;
+	padding: 20px 10px;
+}
+
+#videoSearch .search-results li:first-child {
+	margin-top: 15px;
+}
+
+#videoSearch .search-results li:last-child {
+	border-bottom: none;
+}
+
+#videoSearch .search-results li:hover {
+	background-color: #eee;
+}
+
+#videoSearch .search-results li .album-art {
+	width: 70px;
+	height: 70px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+#videoSearch .search-results li .info {
+	display: inline-block;
+	vertical-align: middle;
+	width: calc(100% - 90px);
+}
+
+#videoSearch .search-results li .info .title {
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 28px;
+	margin-bottom: 2px;
+}
+
+#videoSearch .search-results li .info .artist, #videoSearch .search-results li .info .album {
+	display: inline-block;
+	font-size: 13px;
+}
+
+#videoSearch .search-results li .info .artist {
+	font-weight: 600;
+	margin-right: 10px;
+	opacity: .75;
+}
+
+#videoSearch .search-results li .info .album {
+	opacity: .5;
+}
+
+#videoSearch .search-results li .youtube-art {
+	display: inline-block;
+	vertical-align: middle;
+	height: 70px;
+	width: 124px;
+	margin-right: 15px;
+	background-position: center;
+	background-size: cover;
+}
+
+#videoSearch .search-results.search-results-youtube li .info {
+	width: calc(100% - 142px);
+}
+
+#videoSearch .search-results.search-results-youtube li .info .title {
+	font-size: 20px;
+	line-height: 22px;
+}
+
+#videoSearch .search-results.search-results-youtube li .info .artist {
+	font-weight: 500;
+}
+
+.proposed-videos {
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.proposed-videos-title {
+	margin: 0;
+	padding: 16px 20px;
+	padding-bottom: 10px;
+	font-family: 'montserrat';
+	font-size: 13px;
+	font-weight: bold;
+	text-transform: uppercase;
+	opacity: .75;
+}
+
+.proposed-videos-title span {
+	font-weight: normal;
+	font-size: 12px;
+	margin-left: 10px;
+	opacity: .6;
+	text-transform: none;
+}
+
+.proposed-videos-list li {
+	padding: 12px 0px 12px 20px;
+	border-bottom: 1px solid rgba(255,255,255,.07);
+	opacity: 0.6;
+}
+
+.proposed-videos-list li.did-vote {
+	opacity: 1;
+}
+
+.proposed-videos-list li:hover {
+	opacity: 1;
+	cursor: pointer;
+	background-color: rgba(255,255,255,.05);
+}
+
+.proposed-videos-list li .album-art {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.proposed-videos-list li img.source {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-right: 8px;
+}
+
+.proposed-videos-list li .info {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 5px;
+	font-family: 'montserrat';
+	width: calc(100% - 140px);
+}
+
+.proposed-videos-list li .info .title {
+	font-size: 13px;
+	line-height: 16px;
+	font-weight: 400;
+}
+
+.proposed-videos-list li .info .title .sub {
+	margin-left: 4px;
+	opacity: .5;
+}
+
+.proposed-videos-list li .info .artist {
+	line-height: 14px;
+	opacity: 0.65;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.proposed-videos-list li .info .artist span {
+	margin-right: 6px;
+}
+
+
+.proposed-videos-list li .vote-count {
+	font-size: 18px;
+	height: 30px;
+	margin: 1px 0;
+	line-height: 30px;
+	border-radius: 2px;
+	padding: 0 10px;
+	color: white;
+	opacity: .3;
+}
+
+.proposed-videos-list li.did-vote .vote-count {
+	color: #3CB56F;
+}
+
+.proposed-videos-list li:hover .vote-count, .proposed-videos-list li.did-vote .vote-count {
+	opacity: 1;
+}
+
+.proposed-videos-list li .vote-count span.count {
+	display: inline-block;
+	vertical-align: top;
+	margin-right: 4px;
+	font-family: 'Helvetica Neue', 'Arial', sans-serif;
+	font-weight: bold;
+}
+
+.proposed-videos-list li .vote-count .glyphicon {
+	vertical-align: top;
+	line-height: 30px;
+	position: relative;
+	top: 1px;
+}
+
+.proposed-videos-list li .vote-count .glyphicon-ok { display: none; }
+
+.proposed-videos-list li.did-vote .vote-count .glyphicon-thumbs-up { display: none; }
+.proposed-videos-list li.did-vote .vote-count .glyphicon-ok { display: inline-block; font-size: 14px; }
+
+
+.proposed-videos-empty {
+	padding-left: 20px;
+	font-size: 16px;
+	opacity: 0.7;
+	-webkit-font-smoothing: subpixel-antialiased;
+	font-weight: 300;
+	line-height: 22px;
+	margin-top: 3px;
+	margin-bottom: 10px;
+	color: rgba(255,255,255,.5);
+	position: relative;
+}
+
+.proposed-videos-empty .loader {
+	position: absolute;
+	left: 20px;
+	width: 32px;
+	top: 7px;
+}
+
+.proposed-videos-empty .text {
+	padding-left: 45px;
+}
+
+.proposed-videos-empty a {
+	color: inherit;
+	border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.proposed-videos-empty a:hover {
+	color: white;
+	cursor: pointer;
+	border-bottom-color: rgba(255,255,255,.75);
+	text-decoration: none;
+}
+
+
+
+.past-videos-container {
+	padding: 5px;
+}
+
+
+
+.past-videos-title {
+	font-family: 'montserrat';
+	text-transform: uppercase;
+	color: #555;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 10px 0 2px;
+	margin-bottom: 5px;
+}
+
+.past-videos-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.past-videos-list li {
+	padding: 12px 0;
+	border-top: 1px solid #eee;
+	opacity: 1;
+	color: #777;
+}
+
+.past-videos-list li img.source {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-right: 3px;
+	opacity: .75;
+	position: relative;
+	top: -1px;
+}
+
+.past-videos-list li .album-art {
+	width: 32px;
+	height: 32px;
+	display: inline-block;
+	vertical-align: middle;
+	opacity: .75;
+	margin-right: 7px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.past-videos-list li .info {
+	display: inline-block;
+	vertical-align: middle;
+	font-family: 'montserrat';
+	width: calc(100% - 122px);
+}
+
+.past-videos-list li .info .title {
+	font-size: 14px;
+	line-height: 16px;
+	font-family: 'Lato';
+	margin-right: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin-bottom: 3px;
+}
+
+.past-videos-list li .info .title .sub {
+	margin-left: 4px;
+	opacity: .75;
+}
+
+.past-videos-list li .info .artist {
+	line-height: 14px;
+	opacity: 0.65;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+
+.past-videos-list li .time {
+	float: right;
+	display: inline-block;
+	vertical-align: middle;
+	font-family: 'Helvetica Neue';
+	line-height: 32px;
+	font-weight: 300;
+	font-size: 17px;
+}
+
+.past-videos-list li .time .glyphicon {
+	font-size: 12px;
+	margin-right: 1px;
+}
+
+.rooms-list li {
+	font-size: 24px;
+	font-weight: 300;
+	margin-bottom: 15px;
+}
+
+.type-video .album-art {
+	background-size: 185% auto !important;
+}*/

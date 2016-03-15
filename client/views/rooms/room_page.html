@@ -1,0 +1,200 @@
+<template name="roomsPageTitle">
+	<a href="/" class="crumb">Rooms</a>
+	<span>{{title}}</span>
+</template>
+
+<template name="roomsPageButtons">
+	<button id="search-video" data-toggle="modal" data-target="#videoSearch" class="btn-sky">
+		<span class="glyphicon glyphicon-plus"></span>
+		<span>Add a video</span>
+	</button>
+	{{#if currentUser}}
+		<button id="bookmark-room" class="btn-sky btn-clear {{#if isRoomFavorite}}inverse{{/if}}">
+			{{#if isRoomFavorite}}
+				<span class="glyphicon glyphicon-ok"></span>
+				<span>Room saved</span>
+			{{else}}
+				<span class="glyphicon glyphicon-bookmark"></span>
+				<span>Bookmark</span>
+			{{/if}}
+		</button>
+	{{/if}}
+</template>
+
+
+<template name="roomPage">
+
+	{{> videoSearch}}
+
+	<div class="full-height-container">
+
+		<div id="room-videos" class="
+				{{#unless nowPlaying}}
+					player-idle
+				{{/unless}}
+				">
+			<div class="mouse-capture"></div>
+			<div class="player-container {{#if isVideoDisabled}}video-disabled{{/if}}">
+				<div class="actions">
+					<div class="action action-toggle">
+						<span class="ioscon ioscon-power"></span>
+						<div class="action-label">
+							<span class="active">Turn off</span>
+							<span class="disabled">Turn on</span>
+						</div>
+					</div>
+					<div class="action action-fullscreen">
+						<span class="ioscon ioscon-expand1"></span>
+						<div class="action-label">Fullscreen</div>
+					</div>
+				</div>
+				<div id="player"></div>
+			</div>
+			<div class="now-playing">
+				{{#if nowPlaying}}
+					{{#with nowPlaying}}
+						<div class="now-playing-video type-{{type}} source-{{source}}">
+							{{#if timeRemaining}}
+								<div class="pull-right time-remaining">{{timeRemaining}}</div>
+							{{/if}}
+							{{#if image_url}}
+								<div class="album-art" style="background-image:url({{image_url}})">
+									<img class="source" src="{{sourceIcon source}}">
+								</div>
+							{{/if}}
+							<div class="video-actions">
+								<div data-toggle="tooltip" data-placement="top" title="Vote to skip" class="action action-skip {{#if isSkipping}}active{{/if}}">
+									<span class="glyphicon glyphicon-fast-forward"></span>
+								</div>
+								<div data-toggle="tooltip" data-placement="top" title="{{#if isFavorite}}Remove from favorites{{else}}Add to favorites{{/if}}" class="action action-favorite {{#unless isAnalyzed}}not-analyzed{{/unless}} {{#if isFavorite}}active{{/if}}">
+									<span class="glyphicon glyphicon-heart-empty"></span>
+									<span class="glyphicon glyphicon-heart"></span>
+								</div>
+							</div>
+							<div class="info">
+								<div class="artist">{{artist_name}}</div>
+								<div class="title">{{title}}</div>
+								{{#if subtitle}}
+									<div class="sub">({{subtitle}})</div>
+								{{/if}}
+							</div>
+						</div>
+					{{/with}}
+				{{else}}
+					<div class="waiting-for-videos">
+						<div>To begin, add a video<br> or song to the playlist.</div>
+						<button id="search-video" data-toggle="modal" data-target="#videoSearch" class="btn-sky">
+							<span class="glyphicon glyphicon-plus"></span>
+							<span>Add a video</span>
+						</button>
+					</div>
+				{{/if}}
+			</div>
+			<div class="coming-up">
+				<div class="more-options right"><span class="glyphicon glyphicon-chevron-right"></span></div>
+				<div class="more-options left"><span class="glyphicon glyphicon-chevron-left"></span></div>
+
+				{{#if nowPlaying}}
+					<div class="proposed-videos">
+						<div class="proposed-videos-title">
+							{{#if isGeneratingRecommendations}}
+								<div class="generating-recommendations">
+									<span>Thinking recommendations...</span>
+									<img class="loader" src="/cyan_loader.gif">
+								</div>
+							{{/if}}
+							{{#if countCursor proposedVideosList}}
+								<span class="title">Coming up</span>
+								<span class="lab">Vote for the next video.</span>
+							{{/if}}
+						</div>
+						<ul class="proposed-videos-list">
+							{{#if countCursor proposedVideosList}}
+								{{#each proposedVideosList}}
+									<li class="
+										{{#if didVote}}
+											did-vote
+										{{/if}}
+										type-{{type}}
+										source-{{source}}
+									">
+										{{#if videoVoteCount}}
+										<div class="vote-count">
+											<span class="glyphicon glyphicon-thumbs-up"></span>
+											<span class="count">{{videoVoteCount}}</span>
+										</div>
+										{{/if}}
+
+										{{#if image_url}}
+											<div class="album-art" style="background-image:url({{image_url}})">
+												<img class="source" src="{{sourceIcon source}}">
+											</div>
+										{{/if}}
+
+										<div class="info">
+											<div class="artist">
+												{{#if artist_name}}
+													<span>{{artist_name}}</span>
+												{{/if}}
+											</div>
+											<div class="title">{{title}} 
+											{{#if subtitle}}
+												<span class="sub">({{subtitle}})</span>
+											{{/if}}
+											</div>
+											{{#if isSongrollRecommendation}}
+												<div class="recommended">Recommended</div>
+											{{/if}}
+										</div>
+									</li>
+								{{/each}}
+							{{else}}
+								<div class="proposed-videos-empty">
+									<strong>The playlist is empty!</strong><br>
+									{{#if hasRecommendations}}
+										<span>Wait for the recommendations or <a data-toggle="modal" data-target="#videoSearch">add a video</a> yourself.</span>
+									{{else}}
+										<span>Be the first to <a data-toggle="modal" data-target="#videoSearch">add a video</a> to the playlist.</span>
+									{{/if}}
+								</div>
+							{{/if}}
+						</ul>
+					</div>
+				{{/if}}
+			</div>
+		</div>
+
+		<div id="room-chat">
+			<div class="room-image" style="background-image:url({{roomImage}});"></div>
+			<div class="room-users">
+				<ul class="user-list pull-right">
+					<li class="user-count">
+						<span class="glyphicon glyphicon-user"></span>
+						<span class="count">{{roomUserCount}}</span>
+					</li>
+				</ul>
+				<div class="share-room">
+					<span class="glyphicon glyphicon-link"></span>
+					<input type="text" readonly value="{{roomLink}}">
+				</div>
+			</div>
+			<form id="sendMessage">
+				<img src="/topic-50.png" class="message-icon">
+				<input type="text" placeholder="Write your message...">
+				<button type="submit">
+					<span class="glyphicon glyphicon-send"></span>
+				</button>
+			</form>
+
+			<div class="room-messages">
+				<ul class="message-list">
+					{{#each messageList}}
+						{{> messageItem}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</template>

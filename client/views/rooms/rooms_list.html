@@ -1,0 +1,29 @@
+<template name="roomsListTitle">
+  <span class="crumb">Songroll</span>
+  <span>All rooms</span>
+</template>
+
+<template name="roomsListButtons">
+  <button id="createRoom" data-toggle="modal" data-target="#roomCreator" class="btn-sky">
+    <span class="glyphicon glyphicon-plus"></span>
+    <span>Create a room</span>
+  </button>
+</template>
+
+<template name="roomsList">
+
+  {{> roomCreator}}
+
+  <div class="rooms-list">
+  {{#each rooms}}
+  	{{> roomItem}}
+  {{/each}}
+  {{#each roomsFiller}}
+    <a href="javascript:void(0);" class="room-item room-item-filler">
+      <div class="filler-image" style="background-image:url(/concert-holders/{{index}}.jpeg);"></div>
+      <div class="filler-content"><div class="plus">+</div></div>
+    </a>
+  {{/each}}
+  </div>
+
+</template>

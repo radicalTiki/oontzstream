@@ -1,0 +1,27 @@
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+	background: #EE007C;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+	box-shadow: 0 0 10px #EE007C, 0 0 5px #EE007C;
+}
+
+#nprogress .spinner {
+	left: 15px;
+	right: auto;
+	top: 15px;
+}
+
+#nprogress .spinner-icon {
+	border-top-color: #A2125D;
+	border-left-color: #A2125D;
+	width: 30px;
+	border-width: 3px;
+	height: 30px;
+}
