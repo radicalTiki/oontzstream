@@ -20,6 +20,9 @@ Template.layout.events = {
 	'click #login': function(){
 		$('#loginModal').modal('show');
 	},
+	'click #register': function(){
+		$('#register').show();
+	},
 	'click .logout': function(){
 		Meteor.logout();
 	},
