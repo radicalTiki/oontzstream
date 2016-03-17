@@ -1,6 +1,5 @@
 Template.login.events({
     'submit form': function(event){
-        event.preventDefault();
         var email = $('[name=email]').val();
         var password = $('[name=password]').val();
 
@@ -8,6 +7,7 @@ Template.login.events({
         	var username = $('[name=username]').val();
 
         	Accounts.createUser({
+	        	username: username,
 	        	name: username,
 	            email: email,
 	            password: password
