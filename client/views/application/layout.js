@@ -20,9 +20,9 @@ Template.layout.events = {
 	'click #login': function(){
 		$('#loginModal').modal('show');
 	},
-	'click #loginWithTwitter': function(){
-		Meteor.loginWithTwitter();
-	},
+	//'click #loginWithTwitter': function(){
+	//	
+	//},
 	'click .logout': function(){
 		Meteor.logout();
 	},
