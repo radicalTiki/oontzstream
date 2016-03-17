@@ -12,15 +12,13 @@ Meteor.startup(function(){
 	}
 });
 
-/*
+
 Accounts.onCreateUser(function(options, user){
-	if ( user.services.twitter ) {
-		user.name = user.services.twitter.screenName;
-		user.username = user.services.twitter.screenName;
-		user.avatar = user.services.twitter.profile_image_url_https;
-	}
+	user.name = user.username;
+	user.username = user.username;
+	user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
 	return user;
-});*/
+});
 
 // Kick users on exit
 UserStatus.events.on("connectionLogout", function(fields) {
