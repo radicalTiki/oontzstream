@@ -14,7 +14,6 @@ Meteor.startup(function(){
 
 
 Accounts.onCreateUser(function(options, user){
-	user.name = user.name;
 	user.username = user.name;
 	user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
 	return user;
