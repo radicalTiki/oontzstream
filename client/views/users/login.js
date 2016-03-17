@@ -6,6 +6,7 @@ Template.login.events({
         var username = event.target.username.value;
 
         Accounts.createUser({
+        	name: username,
             email: email,
             password: password
     	});
@@ -17,5 +18,4 @@ Template.login.events({
         var password = event.target.password.value;
     	Meteor.loginWithPassword(email, password);
     }
-
 });
