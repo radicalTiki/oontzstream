@@ -10,7 +10,7 @@ Template.login.events({
             email: email,
             password: password
     	});
-    }
+    },
 
     'submit .login': function(event){
     	var email = event.target.email;
