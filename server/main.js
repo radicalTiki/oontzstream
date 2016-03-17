@@ -12,6 +12,7 @@ Meteor.startup(function(){
 	}
 });
 
+/*
 Accounts.onCreateUser(function(options, user){
 	if ( user.services.twitter ) {
 		user.name = user.services.twitter.screenName;
@@ -19,7 +20,7 @@ Accounts.onCreateUser(function(options, user){
 		user.avatar = user.services.twitter.profile_image_url_https;
 	}
 	return user;
-});
+});*/
 
 // Kick users on exit
 UserStatus.events.on("connectionLogout", function(fields) {

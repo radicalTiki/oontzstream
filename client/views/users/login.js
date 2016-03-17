@@ -1,21 +1,20 @@
 Template.login.events({
     'submit .register': function(event){
-        var email = event.target.email;
-        var password = event.target.password;
-        var username = event.target.username;
+    	event.preventDefault();
+        var email = event.target.email.value;
+        var password = event.target.password.value;
+        var username = event.target.username.value;
 
         Accounts.createUser({
-        	username: username,
-        	name: username,
             email: email,
             password: password
     	});
     },
 
     'submit .login': function(event){
-    	var email = event.target.email;
-        var password = event.target.password;
-
+    	event.preventDefault();
+    	var email = event.target.email.value;
+        var password = event.target.password.value;
     	Meteor.loginWithPassword(email, password);
     }
 
