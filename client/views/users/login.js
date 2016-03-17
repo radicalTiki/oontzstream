@@ -1,21 +1,22 @@
 Template.login.events({
-    'submit form': function(event){
-        var email = $('[name=email]').val();
-        var password = $('[name=password]').val();
+    'submit .register': function(event){
+        var email = event.target.email;
+        var password = event.target.password;
+        var username = event.target.username;
 
-        if (event.val == 'Register') {
-        	var username = $('[name=username]').val();
-
-        	Accounts.createUser({
-	        	username: username,
-	        	name: username,
-	            email: email,
-	            password: password
-        	});
-        }
-
-        if (event.val == 'login'){
-        	Meteor.loginWithPassword(email, password);
-        } 
+        Accounts.createUser({
+        	username: username,
+        	name: username,
+            email: email,
+            password: password
+    	});
     }
+
+    'submit .login': function(event){
+    	var email = event.target.email;
+        var password = event.target.password;
+
+    	Meteor.loginWithPassword(email, password);
+    }
+
 });
