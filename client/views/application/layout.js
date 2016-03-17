@@ -21,7 +21,7 @@ Template.layout.events = {
 		$('#loginModal').modal('show');
 	},
 	'click #register': function(){
-		$('#register').show();
+		$('.register').show();
 	},
 	'click .logout': function(){
 		Meteor.logout();
