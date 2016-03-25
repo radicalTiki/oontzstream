@@ -15,7 +15,10 @@ Meteor.startup(function(){
 
 Accounts.onCreateUser(function(options, user){
 	user.name = user.username;
-	user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
+	
+	// we shouldn't source offsite assets for simple things like this	
+	//user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
+	user.avatar = '/public/syringe.jpg';
 	return user;
 });
 
