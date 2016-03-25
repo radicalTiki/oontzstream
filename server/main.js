@@ -18,7 +18,7 @@ Accounts.onCreateUser(function(options, user){
 	
 	// we shouldn't source offsite assets for simple things like this	
 	//user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
-	user.avatar = '/public/syringe.jpg';
+	user.avatar = '/syringe.jpg';
 	return user;
 });
 
