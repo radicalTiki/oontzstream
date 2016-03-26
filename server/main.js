@@ -1,6 +1,7 @@
 Meteor.startup(function(){
-	console.log('Hey server! This is Oontzstream.');
-	console.log('To kick things off, I will look for songs currently playing and set timers for when they end.');
+	// startup messages and finding any previously playing videos
+	console.log("Oontzstream starting up...");
+	console.log("Checking to see if there were any videos playing before the last shutdown (assuming that this app was running before)...");
 	var nowPlaying = Videos.find({nowPlaying: true});
 	nowPlaying.forEach(function(doc, i){
 		Sky.playNextWhenOver(doc._id);
@@ -32,6 +33,9 @@ Meteor.startup(function(){
 		// execute the request
 		Rooms.insert({title: 'Main Room', featured: true, description: 'If you\'re looking for music and people (who are possibly young and alive), start here.', hasRecommendations: true, isPrivate: false});
 	}
+	
+	// tell the console that we're finished with the initial startup
+	console.log("Startup complete");
 });
 
 
