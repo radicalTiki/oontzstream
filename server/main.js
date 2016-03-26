@@ -7,8 +7,8 @@ Meteor.startup(function(){
 	});
 
 	// Insert welcome room
-	if ( !Rooms.findOne({title: 'Oontzstream', featured: true}) ) {
-		Rooms.insert({title: 'Oontzstream', featured: true, description: 'If you\'re looking for music and people (who are possibly young and alive), start here.', hasRecommendations: true, isPrivate: false});
+	if ( !Rooms.findOne({title: 'Main Room', featured: true}) ) {
+		Rooms.insert({title: 'Main Room', featured: true, description: 'If you\'re looking for music and people (who are possibly young and alive), start here.', hasRecommendations: true, isPrivate: false});
 	}
 });
 
