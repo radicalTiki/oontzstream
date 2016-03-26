@@ -5,9 +5,31 @@ Meteor.startup(function(){
 	nowPlaying.forEach(function(doc, i){
 		Sky.playNextWhenOver(doc._id);
 	});
+	
+	// if there are no users in the database yet, create an admin
+	if(Meteor.users.find().fetch().length == 0) {
+		// tell the console that we are creating a user
+		console.log("Creating initial admin user");
+		
+		// variables needed for the admin user's defaults
+        var email = "admin@notadomain.xyz";
+        var password = "admin1234!";
+        var username = "admin";
 
-	// Insert welcome room
-	if ( !Rooms.findOne({title: 'Main Room', featured: true}) ) {
+		// execute the request
+        Accounts.createUser({
+        	username: username,
+            email: email,
+            password: password
+    	});
+	}
+
+	// if we don't have any rooms called "Main Room", create one
+	if (!Rooms.findOne({title: 'Main Room', featured: true})) {
+		// tell the console that we are creating the Main Room
+		console.log("Creating the initial Main Room");
+		
+		// execute the request
 		Rooms.insert({title: 'Main Room', featured: true, description: 'If you\'re looking for music and people (who are possibly young and alive), start here.', hasRecommendations: true, isPrivate: false});
 	}
 });
@@ -20,8 +42,12 @@ Accounts.onCreateUser(function(options, user){
 	//user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
 	user.avatar = '/avatars/default.png';
 	
-	// give the new user a default class (0 = not verified yet)
-	user.userClass = 0;
+	// give the new user a default class (0 if not an admin, 2 if admin)
+	if(user.name == "admin") {
+		user.userClass = 2;
+	} else {
+		user.userClass = 0;
+	}
 	
 	return user;
 });
