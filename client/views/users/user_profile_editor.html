@@ -1,8 +1,3 @@
-<template name="userProfileEditorTitle">
-	<a href="/" class="crumb">You</a>
-	<span>My Rooms</span>
-</template>
-
 <template name="userProfileEditor">
 
 	<div id="my-profile">
@@ -10,7 +5,21 @@
 			My Profile
 		</div>
 		<div class="tab-content">
-			Work in progress...
+			<div class="username">
+				Username: {{currentUser.name}}
+			</div>
+			<div class="email-address">
+				Email Address: {{currentUser.email}}
+			</div>
+			<div class="password-placeholder">
+				Password: *hidden*
+			</div>
+			<div class="password-change">
+				<button>Change Password</button>
+			</div>
+			<div class="avatar">
+				Avatar: <img src="{{currentUser.avatar}}" />
+			</div>
 		</div>
 	</div>
 </template>
