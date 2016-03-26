@@ -26,7 +26,9 @@ processRooms = function(array){
 
 Template.roomsList.helpers({
   rooms: function() {
-    var rooms = Rooms.find({isPrivate: false, $or: [ { userCount: { $gt: 0 } }, { featured: true } ] }, { sort: { featured: -1, userCount: -1 } }).fetch();
+	// this is way too restrictive - let's just filter out the private ones
+    //var rooms = Rooms.find({isPrivate: false, $or: [ { userCount: { $gt: 0 } }, { featured: true } ] }, { sort: { featured: -1, userCount: -1 } }).fetch();
+	var rooms = Rooms.find({isPrivate: false}, {sort: {featured: -1, userCount: -1 }}).fetch();
     return processRooms(rooms);
   },
   roomsFiller: function(){
