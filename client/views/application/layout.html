@@ -14,7 +14,9 @@
 					<i class="fa fa-angle-right"></i>
 				</div>
 				<div style="width: 0;" class="user-menu">
-					<span class="name">{{currentUser.name}}</span>
+					<a href="{{pathFor 'userProfileEditor'}}">
+						<span class="name">{{currentUser.name}}</span>
+					</a>
 					<a href="{{pathFor 'userRooms'}}">
 						<span class="glyphicon glyphicon-th-large"></span>
 						<span>My Rooms</span>
