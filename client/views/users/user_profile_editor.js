@@ -3,6 +3,13 @@ Template.userProfileEditor.onRendered(function() {
 	$("#sky-header #change-password-modal").remove();
 });
 
+Template.userProfileEditor.helpers({
+	// get the email address of the logged in user
+	currentUserEmail: function() {
+		return Meteor.user().emails[0].address;
+	}
+});
+
 Template.userProfileEditor.events({
 	"click .password-change": function(e) {
 		e.preventDefault();
