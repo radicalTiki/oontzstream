@@ -43,7 +43,8 @@ Template.userProfileEditor.events({
 		}
 	},
 	
-	"click .avatar-change": function() {
-		console.log("clicked avatar change button");
+	"click .avatar-change": function(e) {
+		e.preventDefault();
+		$("#change-avatar-modal").modal("show");
 	},
 });
