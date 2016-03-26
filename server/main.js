@@ -1,5 +1,5 @@
 Meteor.startup(function(){
-	console.log('Hey server! This is Songroll Sky.');
+	console.log('Hey server! This is Oontzstream.');
 	console.log('To kick things off, I will look for songs currently playing and set timers for when they end.');
 	var nowPlaying = Videos.find({nowPlaying: true});
 	nowPlaying.forEach(function(doc, i){
@@ -7,8 +7,8 @@ Meteor.startup(function(){
 	});
 
 	// Insert welcome room
-	if ( !Rooms.findOne({title: 'Welcome to Songroll', featured: true}) ) {
-		Rooms.insert({title: 'Welcome to Songroll', featured: true, description: 'Learn the basics while you listen to awesome music and chat with cool people.', hasRecommendations: true, isPrivate: false});
+	if ( !Rooms.findOne({title: 'Oontzstream', featured: true}) ) {
+		Rooms.insert({title: 'Oontzstream', featured: true, description: 'If you\'re looking for music and people (who are possibly young and alive), start here.', hasRecommendations: true, isPrivate: false});
 	}
 });
 
