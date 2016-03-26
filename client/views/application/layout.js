@@ -1,3 +1,8 @@
+// Blaze now requires us to explicitly allow "javascript:" URLs
+Template.layout.onCreated(function() {
+	Blaze._allowJavascriptUrls();
+});
+
 Template.layout.rendered = function(){
 	if ( !Meteor.userId() ) {
 		$('#welcomeModal').modal('show');

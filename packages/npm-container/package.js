@@ -17,5 +17,5 @@
   }                                                                                      // 107
                                                                                          // 108
   Package.onUse(function(api) {                                                          // 109
-    api.add_files(['index.js', '../../packages.json'], 'server');                        // 110
+    api.addAssets(['index.js', '../../packages.json'], 'server');                        // 110
   });                                                                                    // 111
