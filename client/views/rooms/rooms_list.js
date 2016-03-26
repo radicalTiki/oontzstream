@@ -32,7 +32,10 @@ Template.roomsList.helpers({
     return processRooms(rooms);
   },
   roomsFiller: function(){
-    var rooms = Rooms.find({isPrivate: false, $or: [ { userCount: { $gt: 0 } }, { featured: true } ] }).count();
+	// we only want to show 9 rooms if there are fewer than 9, so we also
+	// need to be less restrictive here
+    //var rooms = Rooms.find({isPrivate: false, $or: [ { userCount: { $gt: 0 } }, { featured: true } ] }).count();
+    var rooms = Rooms.find({isPrivate: false}).count();
     var filler = [];
     if ( rooms < 9 ) {
       for (var i = 9 -rooms; i > 0; i--) {
