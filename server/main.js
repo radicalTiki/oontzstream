@@ -13,9 +13,9 @@ Meteor.startup(function(){
 		console.log("Creating initial admin user");
 		
 		// variables needed for the admin user's defaults
+		var username = "admin";
         var email = "admin@notadomain.xyz";
-        var password = "admin1234!";
-        var username = "admin";
+        var password = Random.id(10); // generate a random password
 
 		// execute the request
         Accounts.createUser({
@@ -23,6 +23,10 @@ Meteor.startup(function(){
             email: email,
             password: password
     	});
+		
+		// send the password to the console
+		console.log("The admin user's password is: " + password);
+		console.log("Please store this in a safe place!");
 	}
 
 	// if we don't have any rooms called "Main Room", create one
