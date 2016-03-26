@@ -6,21 +6,61 @@
 <template name="userProfileEditor">
 
 	<div id="my-profile">
+		<div class="heading">
+			User Information
+		</div>
 		<div class="tab-content">
 			<div class="username">
-				Username: {{currentUser.name}}
+				<div class="label">Username:</div>
+				<div class="data">{{currentUser.name}}</div>
 			</div>
 			<div class="email-address">
-				Email Address: {{currentUser.email}}
+				<div class="label">Email Address:</div>
+				<div class="data">email@goes.here</div>
 			</div>
 			<div class="password-placeholder">
-				Password: *hidden*
-			</div>
-			<div class="password-change">
-				<button>Change Password</button>
+				<div class="label">Password:</div>
+				<div class="data">*hidden*</div>
+				<div class="password-change change-button">
+					<button>Change Password</button>
+				</div>
 			</div>
 			<div class="avatar">
-				Avatar: <img src="{{currentUser.avatar}}" />
+				<div class="label">Avatar:</div>
+				<div class="data">
+					<img src="{{currentUser.avatar}}" />
+				</div>
+				<div class="avatar-change change-button">
+					<button>Change Avatar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="userProfileEditorLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-background" style="background-image:url(/concert-holders/2.jpeg)"></div>
+				<div class="modal-body">
+					<a class="close-this" data-dismiss="modal">&times;</a>
+					<h2>Change Your Password</h2>
+					<div class="status"></div>
+					<div class="password-input">
+						<p>Enter your current password:</p>
+						<input class="password-input-old" type="password" name="passwordold">
+					</div>
+					<div class="password-input">
+						<p>Enter your new password:</p>
+						<input class="password-input-1st" type="password" name="password1st">
+					</div>
+					<div class="password-input">
+						<p>Enter it again:</p>
+						<input class="password-input-2nd" type="password" name="password2nd">
+					</div>
+					<button id="change-password-submit" class="btn-sky inverse">
+						<span>change password</span>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
