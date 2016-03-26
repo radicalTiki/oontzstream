@@ -14,9 +14,9 @@ Template.login.events({
 
     'submit .login': function(event){
     	event.preventDefault();
-    	var email = event.target.email.value;
+    	var usernameOrEmail = event.target.username_or_email.value;
         var password = event.target.password.value;
 
-    	Meteor.loginWithPassword(email, password);
+    	Meteor.loginWithPassword(usernameOrEmail, password);
     }
 });
