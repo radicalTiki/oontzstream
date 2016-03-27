@@ -7,7 +7,17 @@ Meteor.startup(function(){
 		Sky.playNextWhenOver(doc._id);
 	});
 	
-	// if there are no users in the database yet, create an admin
+	// if there are no roles defined yet, create them here
+	if(Roles.getAllRoles().fetch().length == 0) {
+		[ "user", "admin", "siteadmin" ].forEach(function(r) {
+			Roles.createRole(r);
+		});
+		
+		// let the console know about this
+		console.log("Created user classes");
+	}
+	
+	// if there are no users defined yet, create an admin
 	if(Meteor.users.find().fetch().length == 0) {
 		// tell the console that we are creating a user
 		console.log("Creating initial admin user");
@@ -23,6 +33,9 @@ Meteor.startup(function(){
             email: email,
             password: password
     	});
+		
+		// set the user's role to admin
+		Roles.setUserRoles(Meteor.users.find({name: "admin"}).fetch(), "siteadmin");
 		
 		// send the password to the console
 		console.log("The admin user's password is: " + password);
@@ -49,13 +62,6 @@ Accounts.onCreateUser(function(options, user){
 	// we shouldn't source offsite assets for simple things like this	
 	//user.avatar = 'http://www.health.state.mn.us/divs/idepc/dtopics/stds/images/syringe.jpg';
 	user.avatar = '/avatars/default.png';
-	
-	// give the new user a default class (0 if not an admin, 2 if admin)
-	if(user.name == "admin") {
-		user.userClass = 2;
-	} else {
-		user.userClass = 0;
-	}
 	
 	return user;
 });
