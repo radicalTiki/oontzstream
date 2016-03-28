@@ -1,7 +1,3 @@
-Meteor.publish('allUsers', function(){
-	return Meteor.users.find({}, {username: 1, name: 1, avatar: 1});
-});
-
 Meteor.publish('userData', function () {
     var user = Meteor.users.find({_id: this.userId});
     var votes = Votes.find({user_id: this.userId});
