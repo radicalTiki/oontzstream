@@ -27,3 +27,5 @@ standard-minifiers
 accounts-password
 random
 alanning:roles
+check
+audit-argument-checks

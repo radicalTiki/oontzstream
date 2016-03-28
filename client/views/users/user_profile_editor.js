@@ -1,8 +1,3 @@
-Template.userProfileEditor.onRendered(function() {
-	$("#sky-header #my-profile").remove();
-	$("#sky-header #change-password-modal").remove();
-});
-
 Template.userProfileEditor.helpers({
 	// get the email address of the logged in user
 	currentUserEmail: function() {
