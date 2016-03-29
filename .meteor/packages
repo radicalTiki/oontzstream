@@ -23,9 +23,8 @@ mizzao:user-status
 
 npm-container
 mrt:joyride
-standard-minifiers
 accounts-password
 random
 alanning:roles
-check
-audit-argument-checks
+standard-minifier-css
+standard-minifier-js
