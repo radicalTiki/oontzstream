@@ -1,7 +1,9 @@
 {
   "dependencies": {
     "oauth": {
-      "version": "0.9.11"
+      "version": "0.9.11",
+      "resolved": "https://registry.npmjs.org/oauth/-/oauth-0.9.11.tgz",
+      "from": "oauth@0.9.11"
     }
   }
 }
